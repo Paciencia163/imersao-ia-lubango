@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
 import { CheckCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const registrationSchema = z.object({
   name: z.string().trim().min(1, "Nome é obrigatório").max(100),
@@ -22,6 +23,7 @@ const RegistrationSection = () => {
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof RegistrationForm, string>>>({});
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -55,27 +57,9 @@ const RegistrationSection = () => {
         participant_type: result.data.participant_type,
       }]);
       if (error) throw error;
-      toast.custom((t) => (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.8, y: -20 }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-lg backdrop-blur-sm shadow-xl"
-        >
-          <motion.div
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 0.6, repeat: 2 }}
-          >
-            <CheckCircle className="w-6 h-6 text-green-500" />
-          </motion.div>
-          <div>
-            <p className="font-bold text-green-600">Inscrição Confirmada! 🎉</p>
-            <p className="text-sm text-green-600/80">Obrigado por se inscrever na Imersão em IA!</p>
-          </div>
-        </motion.div>
-      ));
       setForm({ name: "", email: "", phone: "", profession: "", institution: "", participant_type: "outro" });
+      // Redireciona para página de confirmação com instruções de pagamento
+      navigate("/inscricao/confirmada");
     } catch {
       toast.error("Erro ao submeter inscrição. Tente novamente.");
     } finally {
