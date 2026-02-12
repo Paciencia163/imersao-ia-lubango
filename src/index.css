@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 147 100% 50%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 147 100% 10%;
+    --secondary-foreground: 147 100% 50%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 147 100% 15%;
+    --accent-foreground: 147 100% 50%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 147 30% 15%;
+    --input: 147 20% 12%;
+    --ring: 147 100% 50%;
+
+    --radius: 0.75rem;
+
+    --neon: 147 100% 50%;
+    --neon-glow: 0 0 20px hsl(147 100% 50% / 0.5), 0 0 40px hsl(147 100% 50% / 0.2);
+    --neon-glow-strong: 0 0 20px hsl(147 100% 50% / 0.6), 0 0 60px hsl(147 100% 50% / 0.3), 0 0 100px hsl(147 100% 50% / 0.1);
+    --gradient-neon: linear-gradient(135deg, hsl(147 100% 50%), hsl(160 100% 40%));
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 0%), hsl(0 0% 4%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 6%), hsl(0 0% 3%));
+
+    --font-display: 'Orbitron', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 147 100% 50%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 147 100% 15%;
+    --sidebar-accent-foreground: 147 100% 50%;
+    --sidebar-border: 147 30% 15%;
+    --sidebar-ring: 147 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px hsl(147 100% 50% / 0.5), 0 0 30px hsl(147 100% 50% / 0.2);
+  }
+
+  .box-glow {
+    box-shadow: var(--neon-glow);
+  }
+
+  .box-glow-strong {
+    box-shadow: var(--neon-glow-strong);
+  }
+
+  .border-glow {
+    border-color: hsl(147 100% 50% / 0.5);
+    box-shadow: inset 0 0 20px hsl(147 100% 50% / 0.05), 0 0 15px hsl(147 100% 50% / 0.1);
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(hsl(147 100% 50% / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(147 100% 50% / 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+}
