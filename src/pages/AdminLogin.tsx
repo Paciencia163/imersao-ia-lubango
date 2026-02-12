@@ -14,14 +14,15 @@ const AdminLogin = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) throw error;
+      const { data: authData, error: authError } = await supabase.auth.signInWithPassword({ email, password });
+      if (authError) throw authError;
 
       // Check if user is admin
       const { data: roles, error: roleError } = await supabase
         .from("user_roles")
         .select("role")
-        .limit(1);
+        .eq("user_id", authData.user.id)
+        .eq("role", "admin");
 
       if (roleError || !roles?.length) {
         await supabase.auth.signOut();

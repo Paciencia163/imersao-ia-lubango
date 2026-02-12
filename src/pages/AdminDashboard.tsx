@@ -37,7 +37,12 @@ const AdminDashboard = () => {
       navigate("/admin");
       return;
     }
-    const { data: roles } = await supabase.from("user_roles").select("role").limit(1);
+    const { data: roles } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", session.user.id)
+      .eq("role", "admin");
+    
     if (!roles?.length) {
       await supabase.auth.signOut();
       navigate("/admin");
