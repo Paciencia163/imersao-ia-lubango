@@ -28,7 +28,18 @@ const EventInfoSection = () => {
           >
             <MapPin className="w-10 h-10 text-primary mx-auto mb-4" />
             <h3 className="font-display text-sm font-semibold text-foreground mb-1">Local</h3>
-            <p className="text-muted-foreground font-body">Novo Hotel – Lubango</p>
+              <div className="text-muted-foreground font-body">
+                <p className="mb-3">Novo Hotel – Lubango</p>
+                <div className="w-full h-40 rounded-md overflow-hidden">
+                  <iframe
+                    title="Localização Novo Hotel Lubango"
+                    src="https://www.google.com/maps?q=Novo+Hotel+Lubango&output=embed"
+                    className="w-full h-full border-0"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+              </div>
           </motion.div>
 
           <motion.div

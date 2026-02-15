@@ -1,10 +1,29 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import heroImage from "@/assets/hero-ai.jpg";
 
 const HeroSection = () => {
   const scrollToRegistration = () => {
     document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const target = new Date("2026-02-27T15:00:00");
+  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const update = () => {
+      const now = new Date();
+      const diff = Math.max(0, target.getTime() - now.getTime());
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      setCountdown({ days, hours, minutes, seconds });
+    };
+    update();
+    const id = setInterval(update, 1000);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
@@ -49,6 +68,32 @@ const HeroSection = () => {
           Inovação, Produtividade e Desenvolvimento
         </motion.p>
 
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="flex items-center justify-center gap-4 mb-8"
+        >
+          <div className="flex gap-3 items-center text-center text-sm font-body text-foreground/90">
+            <div className="px-3 py-2 bg-card rounded-md">
+              <div className="font-bold">{countdown.days}</div>
+              <div className="text-muted-foreground text-xs">dias</div>
+            </div>
+            <div className="px-3 py-2 bg-card rounded-md">
+              <div className="font-bold">{String(countdown.hours).padStart(2, "0")}</div>
+              <div className="text-muted-foreground text-xs">horas</div>
+            </div>
+            <div className="px-3 py-2 bg-card rounded-md">
+              <div className="font-bold">{String(countdown.minutes).padStart(2, "0")}</div>
+              <div className="text-muted-foreground text-xs">min</div>
+            </div>
+            <div className="px-3 py-2 bg-card rounded-md">
+              <div className="font-bold">{String(countdown.seconds).padStart(2, "0")}</div>
+              <div className="text-muted-foreground text-xs">seg</div>
+            </div>
+          </div>
+        </motion.div>
+
         <motion.button
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -60,6 +105,20 @@ const HeroSection = () => {
         >
           Inscrever-se Agora
         </motion.button>
+
+        <motion.div
+          aria-hidden
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="absolute right-10 top-24 w-48 h-48 md:w-64 md:h-64 pointer-events-none"
+        >
+          <motion.div
+            animate={{ y: [0, -12, 0] }}
+            transition={{ repeat: Infinity, duration: 4 }}
+            className="w-full h-full rounded-full bg-gradient-to-br from-primary/30 to-secondary/20 blur-2xl"
+          />
+        </motion.div>
       </div>
 
       {/* Bottom fade */}

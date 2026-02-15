@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const RegistrationConfirmed = () => {
   const navigate = useNavigate();
   const IBAN = "0040 0000 95442063101 75";
-  const beneficiary = "Paciência Aníbal Muienga";
+  const beneficiary = "Paciência Muienga";
   const phone = "947408021";
 
   const copyIBAN = async () => {
