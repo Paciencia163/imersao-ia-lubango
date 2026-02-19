@@ -94,17 +94,7 @@ const HeroSection = () => {
           </div>
         </motion.div>
 
-        <motion.button
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={scrollToRegistration}
-          className="px-8 py-4 bg-primary text-primary-foreground font-display font-bold text-sm uppercase tracking-wider rounded-lg animate-pulse-glow transition-all"
-        >
-          Inscrever-se Agora
-        </motion.button>
+
 
         <motion.div
           aria-hidden
