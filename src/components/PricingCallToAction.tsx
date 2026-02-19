@@ -101,9 +101,20 @@ const PricingCallToAction = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-center mt-12"
         >
-          <p className="text-muted-foreground mb-4">
+          <p className="text-muted-foreground mb-8">
             Escolha o plano que melhor se adequa ao seu perfil e comece sua jornada em IA
           </p>
+          <motion.button
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
+            className="px-8 py-4 bg-primary text-primary-foreground font-display font-bold text-sm uppercase tracking-wider rounded-lg animate-pulse-glow transition-all"
+          >
+            Inscrever-se Agora
+          </motion.button>
         </motion.div>
       </div>
     </section>
